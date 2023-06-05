@@ -21,7 +21,7 @@ public class TaskEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private String Title;
+    private String title;
     private String description;
     private Boolean completed;
     private Date dueDate;
