@@ -1,5 +1,6 @@
 package com.example.taskmgrspring;
 
+import com.example.taskmgrspring.common.ModelMapperList;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,4 +20,10 @@ public class TaskmgrSpringApplication {
         return new ModelMapper();
     }
 
+    @Bean
+    @Scope("singleton")
+    public ModelMapperList modelMapperList()
+    {
+        return new ModelMapperList(modelMapper());
+    }
 }

@@ -21,6 +21,6 @@ public class NotesEntity {
     private String title;
     private String description;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = TaskEntity.class, cascade = CascadeType.ALL)
     private TaskEntity task;
 }

@@ -1,15 +1,29 @@
 package com.example.taskmgrspring.notes;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.example.taskmgrspring.notes.dtos.CreateNotesDto;
+import com.example.taskmgrspring.notes.dtos.NotesResponseDto;
+import com.example.taskmgrspring.tasks.dtos.CreateTaskDto;
+import com.example.taskmgrspring.tasks.dtos.TaskResponseDto;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+
 @RestController
 @RequestMapping("/tasks/{taskId}/notes")
 public class NotesController {
-    @GetMapping("") // TODO: return type will not be String
-    public String getAllNotesByTaskId(@PathVariable("taskId") Long taskId) {
-        return "here are all the notes for task = " + taskId;
-    }
 
+
+    private NotesService notesService;
+    @GetMapping("/")
+    public ResponseEntity<NotesResponseDto> getAllNotesByTaskId(@PathVariable("taskId") Long taskId) {
+        NotesResponseDto notesResponseDto=notesService.getNoteById(taskId);
+        return ResponseEntity.ok(notesResponseDto);
+    }
+    @PostMapping("/")
+    public ResponseEntity<NotesResponseDto> createTask(@RequestBody CreateNotesDto newNote,Long taskId)
+    {
+        NotesResponseDto savedNotes= notesService.createNote(newNote);
+        return ResponseEntity.created(URI.create("http://localhost:8383/tasks/"+savedNotes.getId())).body(savedNotes);
+    }
 }

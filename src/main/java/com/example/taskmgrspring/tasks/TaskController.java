@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/tasks/")
@@ -18,11 +19,21 @@ public class TaskController
         this.taskService = taskService;
     }
 
-    @GetMapping("")
-    public String getTasks()
+    @GetMapping("/alltasks")
+    public ResponseEntity<List<TaskResponseDto>> getTasks()
     {
-        return "";//TODO: remove the string
+        List<TaskResponseDto> allTasks=taskService.getAllTaks();
+        return ResponseEntity.ok(allTasks);
     }
+
+    @GetMapping("/{taskid}")
+    public ResponseEntity<TaskResponseDto> getTasksbyId(@PathVariable("taskid") Long id)
+    {
+        TaskResponseDto taskResponseDto=taskService.getTaskbyId(id);
+        return ResponseEntity.ok(taskResponseDto);
+    }
+
+
     @PostMapping("")
     public ResponseEntity<TaskResponseDto> createTask(@RequestBody CreateTaskDto newTask)
     {
