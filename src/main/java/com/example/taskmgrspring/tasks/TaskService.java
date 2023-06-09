@@ -7,6 +7,7 @@ import com.example.taskmgrspring.tasks.dtos.TaskResponseDto;
 import com.example.taskmgrspring.tasks.exception.TaskNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class TaskService {
         TaskEntity savedTask=taskRepository.save(task);
         return modelMapper.map(savedTask, TaskResponseDto.class);
     }
-    public TaskResponseDto getTaskbyId(Long id)
+    public TaskResponseDto getTaskbyId(@PathVariable("taskId") Long id)
     {
         TaskEntity task=taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException(id));
         return modelMapper.map(task, TaskResponseDto.class);

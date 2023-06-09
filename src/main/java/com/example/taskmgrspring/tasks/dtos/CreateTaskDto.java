@@ -12,5 +12,4 @@ public class CreateTaskDto {
     private String Description;
     private Date dueDate;
     private List<NotesEntity> notes;
-
 }

@@ -2,6 +2,7 @@ package com.example.taskmgrspring.tasks;
 
 import com.example.taskmgrspring.tasks.dtos.CreateTaskDto;
 import com.example.taskmgrspring.tasks.dtos.TaskResponseDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class TaskController
 {
+
     private final TaskService taskService;
 
     public TaskController(TaskService taskService) {
@@ -26,8 +28,8 @@ public class TaskController
         return ResponseEntity.ok(allTasks);
     }
 
-    @GetMapping("/{taskid}")
-    public ResponseEntity<TaskResponseDto> getTasksbyId(@PathVariable("taskid") Long id)
+    @GetMapping("/{taskId}")
+    public ResponseEntity<TaskResponseDto> getTasksbyId(@PathVariable("taskId") Long id)
     {
         TaskResponseDto taskResponseDto=taskService.getTaskbyId(id);
         return ResponseEntity.ok(taskResponseDto);
@@ -39,7 +41,6 @@ public class TaskController
     {
         TaskResponseDto savedTask= taskService.createTask(newTask);
         return ResponseEntity.created(URI.create("http://localhost:8383/tasks/"+savedTask.getId())).body(savedTask);
-
     }
 
 }

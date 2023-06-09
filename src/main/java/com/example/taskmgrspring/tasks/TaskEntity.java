@@ -16,17 +16,19 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity(name = "tasks")
+@Entity(name = "task")
 public class TaskEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Long taskId;
+
     private String title;
     private String description;
     private Boolean completed;
     private Date dueDate;
 
-    @OneToMany(targetEntity = NotesEntity.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = NotesEntity.class,mappedBy = "task",cascade = CascadeType.ALL)
     private List<NotesEntity> notes;
 
 }
