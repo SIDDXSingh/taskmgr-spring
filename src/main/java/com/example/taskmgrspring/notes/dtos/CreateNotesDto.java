@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 @Data
 public class CreateNotesDto {
-
     private String title;
     private String Description;
 }

@@ -11,4 +11,5 @@ public class NotesResponseDto {
     private Long id;
     private String title;
     private String description;
+    private TaskEntity task;
 }

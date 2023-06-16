@@ -1,0 +1,14 @@
+{
+    "title":"Task2",
+    "description":"added Task2",
+    "dueDate":"2023-06-11",
+    "notes":[{"title":"task 1 note 1",
+    "description":"added note1"},{"title":"task 1 note 1",
+    "description":"added note1"},{"title":"task 1 note 1",
+    "description":"added note1"}] 
+}
+{
+    "title":"Task2",
+    "description":"added Task2",
+    "task":{"id":"1"}
+}
